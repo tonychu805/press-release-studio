@@ -28,6 +28,6 @@ export async function POST(req: Request) {
 
     return result.toTextStreamResponse()
   } catch (err) {
-    return new Response(sanitizeError(err), { status: 200 })
+    return new Response(sanitizeError(err), { status: 500 })
   }
 }

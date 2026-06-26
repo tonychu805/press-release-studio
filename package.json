@@ -9,30 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^16.0.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "ai": "^6.0.0",
-    "@ai-sdk/openai": "^2.0.0",
     "@ai-sdk/anthropic": "^2.0.0",
     "@ai-sdk/google": "^2.0.0",
+    "@ai-sdk/openai": "^2.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "ai": "^6.0.0",
+    "better-sqlite3": "^12.11.1",
+    "clsx": "^2.1.1",
+    "docx": "^9.0.2",
+    "jszip": "^3.10.1",
     "lucide-react": "^0.460.0",
+    "mammoth": "^1.8.0",
+    "next": "^16.0.0",
+    "pdfjs-dist": "^4.8.69",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.0",
-    "mammoth": "^1.8.0",
-    "pdfjs-dist": "^4.8.69",
-    "jszip": "^3.10.1",
-    "docx": "^9.0.2",
-    "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
-    "typescript": "^5.6.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.9.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "postcss": "^8.4.49",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0",
-    "postcss": "^8.4.49"
+    "typescript": "^5.6.0"
   }
 }

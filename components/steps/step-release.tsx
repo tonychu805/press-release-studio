@@ -35,6 +35,7 @@ export function StepRelease() {
     updateActiveReleaseHtml,
     settings,
     activePromptContent,
+    setStatus,
     projectName,
     goToStep,
   } = useWorkflow()
@@ -65,6 +66,7 @@ export function StepRelease() {
     }
     setGenerating(true)
     setStreamBuf("")
+    setStatus("generating")
     try {
       const full = await streamGenerate({
         settings,
@@ -78,6 +80,7 @@ export function StepRelease() {
       setStreamBuf("")
       setView("preview")
     } catch (err) {
+      setStatus("approved")
       setError(err instanceof Error ? err.message : "Press release generation failed.")
     } finally {
       setGenerating(false)

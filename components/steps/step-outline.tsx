@@ -23,6 +23,7 @@ export function StepOutline() {
     updateActiveOutline,
     settings,
     activePromptContent,
+    setStatus,
     goToStep,
   } = useWorkflow()
 
@@ -42,6 +43,7 @@ export function StepOutline() {
     }
     setGenerating(true)
     setStreamBuf("")
+    setStatus("outlining")
     try {
       const full = await streamGenerate({
         settings,
@@ -52,6 +54,7 @@ export function StepOutline() {
       addOutlineVersion(full)
       setStreamBuf("")
     } catch (err) {
+      setStatus("uploading")
       setError(err instanceof Error ? err.message : "Outline generation failed.")
     } finally {
       setGenerating(false)
@@ -84,21 +87,24 @@ export function StepOutline() {
         </div>
       )}
 
-      {outlineVersions.length === 0 && !generating ? (
-        <div className="mx-auto flex max-w-2xl flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="instructions" className="text-sm font-medium">
-              Optional instructions
-            </label>
-            <textarea
-              id="instructions"
-              value={outlineInstructions}
-              onChange={(e) => setOutlineInstructions(e.target.value)}
-              rows={3}
-              placeholder="e.g. Emphasize the funding angle, target a tech-press audience, keep it under 600 words…"
-              className="w-full resize-y rounded-md border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-            />
-          </div>
+      <div className="mx-auto flex h-full max-w-4xl flex-col gap-3">
+        {/* Instructions — always visible so regeneration can use updated instructions */}
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="instructions" className="text-sm font-medium">
+            Optional instructions
+          </label>
+          <textarea
+            id="instructions"
+            value={outlineInstructions}
+            onChange={(e) => setOutlineInstructions(e.target.value)}
+            disabled={isApproved}
+            rows={2}
+            placeholder="e.g. Emphasize the funding angle, target a tech-press audience, keep it under 600 words…"
+            className="w-full resize-y rounded-md border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
+          />
+        </div>
+
+        {outlineVersions.length === 0 && !generating ? (
           <div className="flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-card px-6 py-10 text-center">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary">
               <ListTree className="h-6 w-6 text-accent" />
@@ -112,50 +118,50 @@ export function StepOutline() {
               <Sparkles className="h-4 w-4" /> Generate Outline
             </Button>
           </div>
-        </div>
-      ) : (
-        <div className="mx-auto flex h-full max-w-4xl flex-col gap-3">
-          {/* Version selector */}
-          {outlineVersions.length > 0 && (
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Versions:</span>
-              {outlineVersions.map((o) => (
-                <button
-                  key={o.id}
-                  onClick={() => setActiveOutline(o.id)}
-                  className={`rounded-sm px-2 py-1 text-xs font-medium ${
-                    o.id === activeOutlineId
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-muted"
-                  }`}
-                >
-                  v{o.version}
-                  {o.status === "approved" ? " ✓" : ""}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <div className="min-h-0 flex-1">
-            {generating && streamBuf ? (
-              <div className="flex h-full flex-col overflow-hidden rounded-md border border-border bg-card">
-                <div className="flex items-center gap-2 border-b border-border px-3 py-2 text-xs font-medium text-muted-foreground">
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" /> Streaming outline…
-                </div>
-                <pre className="flex-1 overflow-auto whitespace-pre-wrap p-4 font-mono text-sm scroll-thin">
-                  {streamBuf}
-                </pre>
+        ) : (
+          <>
+            {/* Version selector */}
+            {outlineVersions.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Versions:</span>
+                {outlineVersions.map((o) => (
+                  <button
+                    key={o.id}
+                    onClick={() => setActiveOutline(o.id)}
+                    className={`rounded-sm px-2 py-1 text-xs font-medium ${
+                      o.id === activeOutlineId
+                        ? "bg-accent text-accent-foreground"
+                        : "bg-secondary text-secondary-foreground hover:bg-muted"
+                    }`}
+                  >
+                    v{o.version}
+                    {o.status === "approved" ? " ✓" : ""}
+                  </button>
+                ))}
               </div>
-            ) : (
-              <MarkdownEditor
-                value={activeOutline?.content ?? ""}
-                onChange={updateActiveOutline}
-                readOnly={isApproved}
-              />
             )}
-          </div>
-        </div>
-      )}
+
+            <div className="min-h-0 flex-1">
+              {generating && streamBuf ? (
+                <div className="flex h-full flex-col overflow-hidden rounded-md border border-border bg-card">
+                  <div className="flex items-center gap-2 border-b border-border px-3 py-2 text-xs font-medium text-muted-foreground">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" /> Streaming outline…
+                  </div>
+                  <pre className="flex-1 overflow-auto whitespace-pre-wrap p-4 font-mono text-sm scroll-thin">
+                    {streamBuf}
+                  </pre>
+                </div>
+              ) : (
+                <MarkdownEditor
+                  value={activeOutline?.content ?? ""}
+                  onChange={updateActiveOutline}
+                  readOnly={isApproved}
+                />
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </WorkspaceLayout>
   )
 }

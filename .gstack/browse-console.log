@@ -1,0 +1,121 @@
+[2026-06-26T05:19:42.912Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T05:19:42.950Z] [log] [HMR] connected
+[2026-06-26T05:19:43.939Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:19:43.939Z] [log] [Fast Refresh] done in 106ms
+[2026-06-26T05:20:35.294Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:20:35.295Z] [log] [Fast Refresh] done in 104ms
+[2026-06-26T05:32:30.103Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:32:30.103Z] [warning] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+[2026-06-26T05:32:30.123Z] [log] [Fast Refresh] done in 103ms
+[2026-06-26T05:32:30.222Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T05:32:30.254Z] [log] [HMR] connected
+[2026-06-26T05:32:36.652Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:32:36.652Z] [warning] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+[2026-06-26T05:32:36.698Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T05:32:36.710Z] [log] [HMR] connected
+[2026-06-26T05:32:45.500Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:32:45.526Z] [log] [Fast Refresh] done in 30ms
+[2026-06-26T05:32:54.281Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:32:54.308Z] [log] [Fast Refresh] done in 19ms
+[2026-06-26T05:33:21.614Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:33:21.642Z] [log] [Fast Refresh] done in 36ms
+[2026-06-26T05:33:27.602Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:33:27.627Z] [log] [Fast Refresh] done in 24ms
+[2026-06-26T05:33:38.118Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:33:38.144Z] [log] [Fast Refresh] done in 21ms
+[2026-06-26T05:34:29.586Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T05:34:29.608Z] [log] [HMR] connected
+[2026-06-26T05:40:22.449Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:40:22.564Z] [log] [Fast Refresh] done in 67ms
+[2026-06-26T05:40:22.671Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:40:22.757Z] [log] [Fast Refresh] done in 186ms
+[2026-06-26T05:40:35.831Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:40:35.848Z] [log] [Fast Refresh] done in 88ms
+[2026-06-26T05:40:45.746Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:40:45.770Z] [log] [Fast Refresh] done in 21ms
+[2026-06-26T05:41:07.222Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:41:07.294Z] [log] [Fast Refresh] done in 76ms
+[2026-06-26T05:43:00.894Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:43:00.957Z] [log] [Fast Refresh] done in 14ms
+[2026-06-26T05:43:22.282Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:43:22.352Z] [log] [Fast Refresh] done in 7ms
+[2026-06-26T05:43:34.504Z] [error] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=Mzqeal7anLTl0ZcAO_UZo' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-06-26T05:43:35.501Z] [error] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=Mzqeal7anLTl0ZcAO_UZo' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-06-26T05:43:36.669Z] [log] [HMR] connected
+[2026-06-26T05:43:37.121Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T05:43:37.138Z] [log] [HMR] connected
+[2026-06-26T05:43:49.431Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:43:49.548Z] [log] [Fast Refresh] done in 217ms
+[2026-06-26T05:45:03.775Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:45:04.126Z] [log] [Fast Refresh] done in 450ms
+[2026-06-26T05:46:54.766Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:46:54.814Z] [log] [Fast Refresh] done in 149ms
+[2026-06-26T05:58:40.266Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:58:40.313Z] [log] [Fast Refresh] done in 150ms
+[2026-06-26T05:58:40.413Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:58:40.550Z] [log] [Fast Refresh] done in 209ms
+[2026-06-26T05:59:13.448Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:13.532Z] [log] [Fast Refresh] done in 74ms
+[2026-06-26T05:59:13.647Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:13.728Z] [log] [Fast Refresh] done in 178ms
+[2026-06-26T05:59:18.947Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:19.017Z] [log] [Fast Refresh] done in 17ms
+[2026-06-26T05:59:19.124Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:19.230Z] [log] [Fast Refresh] done in 206ms
+[2026-06-26T05:59:22.825Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:23.071Z] [log] [Fast Refresh] done in 25ms
+[2026-06-26T05:59:28.908Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:29.159Z] [log] [Fast Refresh] done in 16ms
+[2026-06-26T05:59:32.747Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:33.060Z] [log] [Fast Refresh] done in 15ms
+[2026-06-26T05:59:36.891Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:37.180Z] [log] [Fast Refresh] done in 19ms
+[2026-06-26T05:59:41.117Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:41.499Z] [log] [Fast Refresh] done in 18ms
+[2026-06-26T05:59:44.976Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T05:59:45.334Z] [log] [Fast Refresh] done in 19ms
+[2026-06-26T06:00:54.387Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:00:54.388Z] [warning] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+[2026-06-26T06:00:54.500Z] [log] [Fast Refresh] done in 82ms
+[2026-06-26T06:00:54.574Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T06:00:54.597Z] [log] [HMR] connected
+[2026-06-26T06:03:09.837Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:03:09.838Z] [warning] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+[2026-06-26T06:03:09.906Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-06-26T06:03:09.916Z] [log] [HMR] connected
+[2026-06-26T06:03:37.228Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:03:37.260Z] [log] [Fast Refresh] done in 101ms
+[2026-06-26T06:03:46.732Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:03:46.885Z] [log] [Fast Refresh] done in 245ms
+[2026-06-26T06:03:47.026Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:03:47.026Z] [log] [Fast Refresh] done in 100ms
+[2026-06-26T06:03:59.094Z] [log] [Fast Refresh] rebuilding
+[2026-06-26T06:03:59.149Z] [log] [Fast Refresh] done in 65ms

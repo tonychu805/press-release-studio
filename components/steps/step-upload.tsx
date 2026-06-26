@@ -18,9 +18,30 @@ import {
   AlertTriangle,
   Trash2,
   ArrowRight,
+  Sparkles,
 } from "lucide-react"
 
 const ACCEPT = ".pdf,.docx,.pptx,.txt,.md,.markdown"
+
+// File types where server-side enhanced parsing adds real value
+const ENHANCED_TYPES = new Set(["pdf", "pptx", "docx"])
+
+async function tryServerParse(file: File): Promise<{ text: string; warning?: string } | null> {
+  const form = new FormData()
+  form.append("file", file)
+  try {
+    const res = await fetch("/api/parse", { method: "POST", body: form })
+    if (res.status === 503) return null // not configured — fall back silently
+    if (!res.ok) {
+      const { error } = await res.json().catch(() => ({ error: "" }))
+      return { text: "", warning: `Enhanced parsing unavailable — ${error || `server error ${res.status}`}. Text extraction used instead.` }
+    }
+    const { markdown } = (await res.json()) as { markdown: string }
+    return { text: markdown ?? "" }
+  } catch {
+    return null // network error — fall back silently
+  }
+}
 
 function iconFor(type: string) {
   switch (type) {
@@ -61,7 +82,28 @@ export function StepUpload() {
         continue
       }
       try {
-        const { text, warning } = await parseFile(file, type)
+        let text = ""
+        let warning: string | undefined
+        let enhanced = false
+
+        if (ENHANCED_TYPES.has(type)) {
+          const server = await tryServerParse(file)
+          if (server !== null && server.text) {
+            text = server.text
+            warning = server.warning
+            enhanced = true
+          } else if (server !== null && server.warning) {
+            // Server tried but failed — fall back to client with its warning preserved
+            warning = server.warning
+          }
+        }
+
+        if (!text) {
+          const result = await parseFile(file, type)
+          text = result.text
+          if (!warning) warning = result.warning
+        }
+
         if (!text) {
           updateFile(id, {
             status: "error",
@@ -73,6 +115,7 @@ export function StepUpload() {
             extractedText: text,
             chunks: chunkText(text),
             warning,
+            enhanced,
           })
         }
       } catch (err) {
@@ -166,14 +209,23 @@ export function StepUpload() {
                         <span>{formatBytes(f.sizeBytes)}</span>
                         {f.status === "parsing" && (
                           <span className="flex items-center gap-1 text-foreground">
-                            <Loader2 className="h-3 w-3 animate-spin" /> Parsing…
+                            <Loader2 className="h-3 w-3 animate-spin" />
+                            {ENHANCED_TYPES.has(f.fileType)
+                              ? "Processing with enhanced document AI…"
+                              : "Parsing…"}
                           </span>
                         )}
                         {f.status === "parsed" && (
                           <>
-                            <span className="flex items-center gap-1 text-accent">
-                              <CheckCircle2 className="h-3 w-3" /> Parsed
-                            </span>
+                            {f.enhanced ? (
+                              <span className="flex items-center gap-1 text-accent">
+                                <Sparkles className="h-3 w-3" /> Enhanced
+                              </span>
+                            ) : (
+                              <span className="flex items-center gap-1 text-accent">
+                                <CheckCircle2 className="h-3 w-3" /> Parsed
+                              </span>
+                            )}
                             <span>{f.chunks.length} chunks</span>
                             <span>{f.extractedText.length.toLocaleString()} chars</span>
                           </>

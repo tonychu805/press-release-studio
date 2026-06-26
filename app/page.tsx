@@ -10,30 +10,49 @@ import { StepOutline } from "@/components/steps/step-outline"
 import { StepReview } from "@/components/steps/step-review"
 import { StepRelease } from "@/components/steps/step-release"
 import { StepExport } from "@/components/steps/step-export"
+import { ProjectList } from "@/components/project-list"
 
 export default function Page() {
-  const { currentStep } = useWorkflow()
+  const { currentStep, projectId } = useWorkflow()
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState<"projects" | "workspace">("projects")
+
+  function handleTabChange(tab: "projects" | "workspace") {
+    setActiveTab(tab)
+  }
+
+  function handleProjectOpen() {
+    // Switch to workspace tab whenever a project is opened
+    setActiveTab("workspace")
+  }
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-background">
-      <AppHeader onOpenSettings={() => setSettingsOpen(true)} />
+      <AppHeader
+        onOpenSettings={() => setSettingsOpen(true)}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left rail — step navigation */}
-        <aside className="hidden w-72 shrink-0 overflow-y-auto border-r border-border bg-secondary/40 p-4 scroll-thin lg:block">
-          <StepNavigator />
-        </aside>
+      {activeTab === "projects" ? (
+        <ProjectList onOpen={handleProjectOpen} />
+      ) : (
+        <div className="flex flex-1 overflow-hidden">
+          {/* Left rail — step navigation */}
+          <aside className="hidden w-72 shrink-0 overflow-y-auto border-r border-border bg-secondary/40 p-4 scroll-thin lg:block">
+            <StepNavigator />
+          </aside>
 
-        {/* Center workspace */}
-        <main className="flex-1 overflow-hidden">
-          {currentStep === 1 && <StepUpload />}
-          {currentStep === 2 && <StepOutline />}
-          {currentStep === 3 && <StepReview />}
-          {currentStep === 4 && <StepRelease />}
-          {currentStep === 5 && <StepExport />}
-        </main>
-      </div>
+          {/* Center workspace */}
+          <main className="flex-1 overflow-hidden">
+            {currentStep === 1 && <StepUpload />}
+            {currentStep === 2 && <StepOutline />}
+            {currentStep === 3 && <StepReview />}
+            {currentStep === 4 && <StepRelease />}
+            {currentStep === 5 && <StepExport />}
+          </main>
+        </div>
+      )}
 
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>

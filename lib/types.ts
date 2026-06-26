@@ -31,6 +31,7 @@ export interface IngestedFile {
   status: "parsing" | "parsed" | "error"
   error?: string
   warning?: string
+  enhanced?: boolean // parsed with LlamaParse (images + layout included)
 }
 
 export type PromptName = "outline_prompt" | "release_prompt"
